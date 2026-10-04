@@ -44,3 +44,4 @@ jobs:
         with:
           name: GooseDroid-Debug-APK
           path: build/outputs/apk/debug/*.apk
+
