@@ -5,7 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch: # Te permite activar la compilación manualmente desde GitHub
+  workflow_dispatch: # Te permite activar la compilación manualmente desde GitHub siempre que quieras
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          # Al definir esto explícitamente, evitamos que GitHub intente buscar el paquete obsoleto 'tools'
+          # Esto evita por completo que GitHub intente buscar el paquete obsoleto 'tools'
           packages: 'platform-tools;build-tools;34.0.0;platforms;android-34'
 
       - name: Grant Execute Permission for Gradle
@@ -38,6 +38,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: GooseDroid-Debug-APK
-          path: app/build/outputs/apk/debug/*.apk
+          # Ajustado para que busque el APK en la raíz del proyecto, tal como está estructurado GooseDroid
+          path: build/outputs/apk/debug/*.apk
+
 
 
